@@ -6,10 +6,10 @@ public class Quiz0406 {
     }
 }
 
-class Circle{
+class Circle1{
     private double x, y;
     private int radius;
-    public Circle(double x, double y, int radius){
+    public Circle1(double x, double y, int radius){
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -25,13 +25,13 @@ class Circle{
 class CircleManager {
     public static void main(String[] args){ // 같은 넓이인 경우 앞에있는 원 출력
         Scanner scanner = new Scanner(System.in);
-        Circle c[] = new Circle[3];
+        Circle1 c[] = new Circle1[3];
         for (int i = 0; i<3; i++){
             System.out.print("x, y, radius >>");
             double x = scanner.nextDouble();
             double y = scanner.nextDouble();
             int radius = scanner.nextInt();
-            c[i] = new Circle(x, y, radius);
+            c[i] = new Circle1(x, y, radius);
         }
         int max = 0;
         int maxIdx = 0;

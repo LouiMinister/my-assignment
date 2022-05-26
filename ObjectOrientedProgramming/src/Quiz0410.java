@@ -7,7 +7,7 @@ public class Quiz0410 {
 
 }
 
-class Dictionary {
+class Dictionary1 {
     private static String [] kor = {"사랑", "아기", "돈", "미래", "희망"};
     private static String [] eng = {"love", "baby", "money", "future", "hope"};
     public static String kor2Eng(String word) {
@@ -30,7 +30,7 @@ class DicApp {
             if(korForFind.equals("그만")){
                 break;
             }
-            String engFound = Dictionary.kor2Eng(korForFind);
+            String engFound = Dictionary1.kor2Eng(korForFind);
             if(engFound == null){
                 System.out.println(korForFind + "는 저의 사전에 없습니다.");
             } else {
