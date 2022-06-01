@@ -229,29 +229,6 @@ public class Kiosk {
                 throw new CommandMismatchException();
             }
         }
-
-
-//        System.out.println("스터디 공간 예약을 진행합니다...");
-//        System.out.println("예약할 지점의 번호를 입력하세요 (숫자)");
-//        printBranchesTable();
-//        int branchId = scanner.nextInt();
-//        printStudyAreaTable(branchId);
-//        System.out.println("예약할 스터디 공간을 입력하세요 (숫자) System.out.println("스터디 공간 예약을 진행합니다...");
-////        System.out.println("예약할 지점의 번호를 입력하세요 (숫자)");
-////        printBranchesTable();
-////        int branchId = scanner.nextInt();
-////        printStudyAreaTable(branchId);
-////        System.out.println("예약할 스터디 공간을 입력하세요 (숫자)");
-////        int studyAreaId = scanner.nextInt();
-////
-////        System.out.println("예약 일자를 입력하세요");
-////        scanner.nextLine();
-////        String startAtStr = scanner.nextLine();");
-//        int studyAreaId = scanner.nextInt();
-//
-//        System.out.println("예약 일자를 입력하세요");
-//        scanner.nextLine();
-//        String startAtStr = scanner.nextLine();
     }
 
     public static void main(String[] args){

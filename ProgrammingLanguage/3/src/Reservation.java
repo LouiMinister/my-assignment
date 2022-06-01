@@ -30,6 +30,10 @@ public class Reservation {
         return hours;
     }
 
+    public int getCustomerCnt() {
+        return customerCnt;
+    }
+
     public int getStudyAreaBranchId() {
         return studyAreaBranchId;
     }
@@ -55,6 +59,6 @@ public class Reservation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId, studyAreaBranchId, studyAreaId, startAt) % 1000000;
+        return Objects.hash(customerId, studyAreaBranchId, studyAreaId, startAt.toString()) % 1000000;
     }
 }

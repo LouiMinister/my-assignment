@@ -1,7 +1,9 @@
+import java.io.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 
 public class BranchManager {
@@ -16,11 +18,116 @@ public class BranchManager {
     public BranchManager() {
         this.studyAreaBranch = new StudyAreaBranch[7];
         this.reservations = new ArrayList<Reservation>();
+        loadBranches();
     }
 
     public StudyAreaBranch[] getStudyAreaBranch() {
         return studyAreaBranch;
     }
+
+    public void saveBranches(){
+        String filePath = "./branches.txt";
+        File file = new File(filePath);
+        try {
+            if(!file.exists())
+                file.createNewFile();
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            for(int i = 1; i<=6; i++){
+                if(studyAreaBranch[i] == null){
+                    bw.write("null");
+                    bw.newLine();
+                } else {
+                    bw.write("StudyAreaBranch");
+                    bw.newLine();
+                    StudyArea[] studyAreas = studyAreaBranch[i].getStudyAreas();
+                    for(int j = 1; j<=5; j++){
+                        if(studyAreas[j] == null){
+                            bw.write("null");
+                            bw.newLine();
+                        } else {
+                            bw.write(studyAreas[j].getId() + " " +
+                                    studyAreas[j].getCapacity());
+                            bw.newLine();
+                        }
+                    }
+                }
+            }
+            bw.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void loadBranches(){
+        String filePath = "./branches.txt";
+        File file = new File(filePath);
+
+        try {
+            if(!file.exists())
+                return;
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            for(int i = 1; i<=6; i++){
+                line = br.readLine();
+                if(line.equals("StudyAreaBranch")){
+                    studyAreaBranch[i] = new StudyAreaBranch(i);
+                    StudyArea[] studyAreas = studyAreaBranch[i].getStudyAreas();
+                    for(int j = 1; j<=5; j++){
+                        line = br.readLine();
+                        if(!line.equals("null")){
+                            StringTokenizer st = new StringTokenizer(line);
+                            studyAreas[j] =  new StudyArea(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+                        }
+                    }
+                }
+            }
+            br.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void saveReservations(){
+        String filePath = "./reservations.txt";
+        File file = new File(filePath);
+        try {
+            if(!file.exists())
+                file.createNewFile();
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+            for(Reservation rsv: reservations){
+                bw.write(rsv.getCustomerId() +" "+
+                        rsv.getStudyAreaBranchId() + " "+
+                        rsv.getStudyAreaId() + " "+
+                        rsv.getCustomerCnt() + " "+
+                        rsv.getStartAt().toString() + " "+
+                        rsv.getHours());
+            }
+            bw.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
+//    public void loadReservations(){
+//        String filePath = "./reservations.txt";
+//        File file = new File(filePath);
+//        try {
+//            if(!file.exists())
+//                file.createNewFile();
+//            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+//            for(Reservation rsv: reservations){
+//                bw.write(rsv.getCustomerId() +" "+
+//                        rsv.getStudyAreaBranchId() + " "+
+//                        rsv.getStudyAreaId() + " "+
+//                        rsv.getCustomerCnt() + " "+
+//                        rsv.getStartAt().toString() + " "+
+//                        rsv.getHours());
+//            }
+//            bw.close();
+//        }catch (Exception e){
+//            System.out.println(e);
+//        }
+//    }
 
     private void checkBranchInRange(int id) throws StudyException {
         if (id < 0 || id > 6) {
@@ -112,6 +219,7 @@ public class BranchManager {
         checkBranchInRange(id);
         checkStudyAreaBranchAlreadyExist(id);
         studyAreaBranch[id] = new StudyAreaBranch(id);
+        saveBranches();
     }
 
     public void delete(int id) throws CustomException{
@@ -119,6 +227,7 @@ public class BranchManager {
         checkStudyAreaBranchExist(id);
         checkReservationAlreadyExistInBranch(id);
         studyAreaBranch[id] = null;
+        saveBranches();
     }
 
     public void modify(int id) throws CustomException{
@@ -137,6 +246,7 @@ public class BranchManager {
         if(branchSelected.getStudyAreas()[studyAreaId] != null)
             throw new StudyException("이미 스터디 공간이 존재합니다.");
         branchSelected.getStudyAreas()[studyAreaId] = new StudyArea(studyAreaId, capacity);
+        saveBranches();
     }
 
     public void deleteStudyArea(int branchId, int studyAreaId) throws CustomException{
@@ -149,6 +259,7 @@ public class BranchManager {
         if(branchSelected.getStudyAreas()[studyAreaId] == null)
             throw new StudyException("해당 스터디 공간이 존재하지 않습니다.");
         branchSelected.getStudyAreas()[studyAreaId] = null;
+        saveBranches();
     }
 
     public void updateStudyAreaCapacity(int branchId, int studyAreaId, int capacity) throws StudyException{
@@ -162,6 +273,7 @@ public class BranchManager {
             throw new StudyException("해당 스터디 공간이 존재하지 않습니다.");
         StudyArea studyArea = branchSelected.getStudyAreas()[studyAreaId];
         studyArea.setCapacity(capacity);
+        saveBranches();
     }
 
     public void setCurrentCustomer(String id) throws CustomerException {
@@ -180,7 +292,8 @@ public class BranchManager {
         if(customerCnt > studyAreaBranch[studyAreaBranchId].getStudyAreas()[studyAreaId].getCapacity())
             throw new ReservationException("해당 스터디 공간의 가용인원을 초과하였습니다");
         reservations.add(new Reservation(currentCustomerId,studyAreaBranchId, studyAreaId, customerCnt, startAt, hours));
-
+        saveBranches();
+        saveReservations();
     }
 
     public ArrayList<String> getMyReservationsStr(){
@@ -213,6 +326,8 @@ public class BranchManager {
             throw new ReservationException("해당 스터디 공간의 가용인원을 초과하였습니다");
 
         rsv.setCustomerCnt(customerCnt);
+        saveBranches();
+        saveReservations();
     }
 
     public void deleteMyReservation(int hashCode) throws ReservationException {
@@ -222,6 +337,8 @@ public class BranchManager {
         if(!rsv.getCustomerId().equals(currentCustomerId))
             throw new ReservationException("현재 로그인한 회원의 예약이 아닙니다.");
         reservations.remove(rsv);
+        saveBranches();
+        saveReservations();
     }
 }
 
