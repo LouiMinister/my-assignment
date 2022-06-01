@@ -1,0 +1,47 @@
+@startuml classDiagram
+skinparam ClassAttributeIconSize 0
+class ComputerDevice{
+  {abstract} +getPrice(): int
+  {abstract} +getPower(): int
+}
+
+class Speaker{
+  -price: int
+  -power: int
+  +getPrice(): int
+  +getPower(): int
+}
+Speaker --|> ComputerDevice
+
+class Body{
+  -price: int
+  -power: int
+  +getPrice(): int
+  +getPower(): int
+}
+Body --|> ComputerDevice
+
+class Keyboard{
+  -price: int
+  -power: int
+  +getPrice(): int
+  +getPower(): int
+}
+Keyboard --|> ComputerDevice
+
+class Monitor{
+  -price: int
+  -power: int
+  +getPrice(): int
+  +getPower(): int
+}
+Monitor --|> ComputerDevice
+
+class Computer{
+  +addComponent(component: ComputerDevice): void
+  +removeComponent(component: ComputerDevice): void
+  +getPrice(): int
+  +getPower(): int
+}
+Computer *-->"0..*\n-component" ComputerDevice
+@enduml

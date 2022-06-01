@@ -1,0 +1,20 @@
+@startuml sequenceDiagram
+skinparam ClassAttributeIconSize 0
+skinparam sequenceMessageAlign center
+autonumber "0:"
+
+Client -> ":ScoreRecord" : addScore(score: int) void
+activate ":ScoreRecord"
+
+":ScoreRecord" -> ":DataSheetView" : update():void
+activate ":DataSheetView"
+deactivate ":ScoreRecord"
+
+":DataSheetView" -> ":ScoreRecord" : getScoreRecord(): List<Integer>
+activate ":ScoreRecord"
+deactivate ":ScoreRecord"
+
+":DataSheetView" -> ":DataSheetView" : displayScores(record: List<Integer>, viewCount: int):void
+activate ":DataSheetView"
+deactivate ":DataSheetView"
+@enduml
