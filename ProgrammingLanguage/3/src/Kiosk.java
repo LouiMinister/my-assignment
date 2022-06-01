@@ -43,17 +43,17 @@ public class Kiosk {
                 return;
             } catch (CustomException e){
                 System.out.println(e.getMessage());
-            } finally {
-
+            } catch (Exception e){
+                System.out.println(e.getMessage());
             }
         }
     }
 
-    private void doAdminAction() throws StudyException{
+    private void doAdminAction() throws CustomException, InputMismatchException{
         manageBranch();
     }
 
-    private void manageBranch() throws StudyException, InputMismatchException{
+    private void manageBranch() throws CustomException, InputMismatchException{
         int action;
         System.out.println("작업 선택: 1.지점 추가 2.지점 삭제 3.지점 수정");
         action = scanner.nextInt();
@@ -80,7 +80,7 @@ public class Kiosk {
         }
     }
 
-    private void manageStudyArea(int branchId) throws StudyException, InputMismatchException {
+    private void manageStudyArea(int branchId) throws CustomException, InputMismatchException {
         int action;
         System.out.println("작업 선택: 1.스터디 공간 추가 2.스터디 공간 삭제 3.스터디 공간 수정");
 
@@ -153,17 +153,16 @@ public class Kiosk {
         int branchId = scanner.nextInt();
         System.out.println("예약할 스터디 공간을 입력하세요 (1~5)");
         int studyAreaId = scanner.nextInt();
-        System.out.println("예약 일자를 입력하세요");
+        System.out.println("예약 일자를 입력하세요 (YYMMDD)");
         scanner.nextLine();
         String startAtStr = scanner.nextLine();
         System.out.println("시작 시간을 입력하세요 (8 ~ 22)");
         int startAtTime = scanner.nextInt();
         System.out.println("사용 시간을 입력하세요(이용할 시간 숫자로)");
         int duringHours = scanner.nextInt();
-        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("YYMMdd");
+        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyMMdd");
         LocalDate ld = LocalDate.parse(startAtStr, DATEFORMATTER);
         LocalDateTime startAt = LocalDateTime.of(ld, LocalTime.of(startAtTime, 0));
-        System.out.println(startAt);
         System.out.println("사용 인원을 입력해주세요");
         int customerCnt = scanner.nextInt();
         branchManager.createReservation(startAt, duringHours, customerCnt, branchId, studyAreaId);
@@ -182,6 +181,20 @@ public class Kiosk {
         System.out.println("=============================");
     }
 
+    private void modifyReservation() throws InputMismatchException, CustomException {
+        System.out.println("수정할 예약의 예약코드를 입력해주세요");
+        int reservationCode = scanner.nextInt();
+        System.out.println("수정할 예약 인원을 입력해주세요 (1~10)");
+        int customerCnt = scanner.nextInt();
+        branchManager.modifyMyReservation(reservationCode, customerCnt);
+    }
+
+    private void deleteMyReservation() throws InputMismatchException, CustomException {
+        System.out.println("삭제할 예약의 예약코드를 입력해주세요");
+        int reservationCode = scanner.nextInt();
+        branchManager.deleteMyReservation(reservationCode);
+    }
+
     private void doUserAction() throws CustomException,InputMismatchException {
         System.out.println("사용자 ID를 입력하세요 (영문자, 숫자 조합으로 5~10 글자)");
         String id = scanner.nextLine();
@@ -189,7 +202,7 @@ public class Kiosk {
             id = scanner.nextLine();
         branchManager.setCurrentCustomer(id);
 
-        System.out.println("작업 선택: 1.스터디공간 조회 2.스터디공간 예약 3.예약 조회 4.예약 수정");
+        System.out.println("작업 선택: 1.스터디공간 조회 2.스터디공간 예약 3.예약 조회 4.예약 수정 5.예약 삭제");
         int action = scanner.nextInt();
         switch (action){
             case 1: {
@@ -205,7 +218,13 @@ public class Kiosk {
                 lookUpMyReservations();
                 break;
             } case 4: {
-                System.out.println("나의 예약을 수정합니다. (현재 시간 이후)");
+                System.out.println("나의 예약을 수정합니다. (사용 인원 외 변경사항은 예약 삭제후 재등록 해주세요)");
+                modifyReservation();
+                break;
+            } case 5: {
+                System.out.println("나의 예약을 삭제합니다");
+                deleteMyReservation();
+                break;
             } default: {
                 throw new CommandMismatchException();
             }

@@ -52,6 +52,28 @@ public class BranchManager {
         }
     }
 
+    private void checkReservationAlreadyExist(int branchId, int areaId) throws ReservationException{
+        for(Reservation rsv: reservations){
+            if(rsv.getStudyAreaBranchId() == branchId &&
+                rsv.getStudyAreaId() == areaId &&
+                rsv.getStartAt().isAfter(LocalDateTime.now())
+            ){
+                throw new ReservationException("해당 스터디 지점에 유효한 예약이 존재합니다.");
+            }
+        }
+    }
+
+    private void checkReservationAlreadyExistInBranch(int branchId) throws ReservationException{
+        for(Reservation rsv: reservations){
+            if(rsv.getStudyAreaBranchId() == branchId &&
+                    rsv.getStartAt().isAfter(LocalDateTime.now())
+            )
+            {
+                throw new ReservationException("해당 스터디 지점에 유효한 예약이 존재합니다.");
+            }
+        }
+    }
+
     private void checkValidatedIdFormat(String id) throws CustomerException{
         if(id.length() < 5 ||
                 id.length() >10 ||
@@ -61,7 +83,7 @@ public class BranchManager {
 
     private void checkNewReservationDateInRange(LocalDateTime startAt, int hours) throws ReservationException{
         LocalDateTime tomorrow = LocalDateTime.now().plusDays(1).with(LocalTime.of(0,0));
-        if(!startAt.isBefore(tomorrow)){
+        if(!startAt.isAfter(tomorrow)){
             throw new ReservationException("오늘 이후 날짜만 예약할 수 있습니다");
         }
         LocalTime startTime =  startAt.toLocalTime();
@@ -72,23 +94,37 @@ public class BranchManager {
         }
     }
 
+    private void checkNewReservationOverlap(LocalDateTime startAt, int hours, int branchId, int areaId) throws ReservationException{
+
+        LocalDateTime endTime = startAt.plusHours(hours);
+        for(Reservation rsv :reservations){
+            if(rsv.getStudyAreaId() == areaId && rsv.getStudyAreaBranchId() == branchId){
+                if(!(endTime.isBefore(rsv.getStartAt()) ||
+                        startAt.isAfter(rsv.getStartAt().plusHours(rsv.getHours())))
+                ){
+                    throw new ReservationException("시간이 겹치는 예약이 존재합니다");
+                }
+            }
+        }
+    }
+
     public void create(int id) throws StudyException{
         checkBranchInRange(id);
         checkStudyAreaBranchAlreadyExist(id);
         studyAreaBranch[id] = new StudyAreaBranch(id);
     }
 
-    public void delete(int id) throws StudyException{
+    public void delete(int id) throws CustomException{
         checkBranchInRange(id);
         checkStudyAreaBranchExist(id);
-        //TODO: 예약되어있으면 예외처리
+        checkReservationAlreadyExistInBranch(id);
         studyAreaBranch[id] = null;
     }
 
-    public void modify(int id) throws StudyException{
+    public void modify(int id) throws CustomException{
         checkBranchInRange(id);
         checkStudyAreaBranchExist(id);
-        //TODO: 예약되어있으면 예외처리
+        checkReservationAlreadyExistInBranch(id);
     }
 
     public void addStudyArea(int branchId, int studyAreaId, int capacity) throws StudyException{
@@ -103,11 +139,11 @@ public class BranchManager {
         branchSelected.getStudyAreas()[studyAreaId] = new StudyArea(studyAreaId, capacity);
     }
 
-    public void deleteStudyArea(int branchId, int studyAreaId) throws StudyException{
+    public void deleteStudyArea(int branchId, int studyAreaId) throws CustomException{
         checkBranchInRange(branchId);
         checkStudyAreaInRange(studyAreaId);
         checkStudyAreaBranchExist(branchId);
-        //TODO: 예약되어있으면 예외처리
+        checkReservationAlreadyExist(branchId, studyAreaId);
 
         StudyAreaBranch branchSelected = studyAreaBranch[branchId];
         if(branchSelected.getStudyAreas()[studyAreaId] == null)
@@ -119,8 +155,7 @@ public class BranchManager {
         checkBranchInRange(branchId);
         checkStudyAreaInRange(studyAreaId);
         checkStudyAreaBranchExist(branchId);
-        checkStudyAreaInRange(capacity)
-        //TODO: 예약되어있으면 예외처리
+        checkStudyAreaInRange(capacity);
 
         StudyAreaBranch branchSelected = studyAreaBranch[branchId];
         if(branchSelected.getStudyAreas()[studyAreaId] == null)
@@ -137,12 +172,14 @@ public class BranchManager {
     public void createReservation(LocalDateTime startAt, int hours, int customerCnt, int studyAreaBranchId, int studyAreaId) throws ReservationException, StudyException{
         checkNewReservationDateInRange(startAt, hours);
         checkStudyAreaBranchExist(studyAreaBranchId);
-        //TODO: 중복 예약 예외처리
-        //TODO: 사용 인원 예외처
+        checkNewReservationOverlap(startAt, hours, studyAreaBranchId, studyAreaId);
+
         StudyAreaBranch branchSelected = studyAreaBranch[studyAreaBranchId];
         if(branchSelected.getStudyAreas()[studyAreaId] == null)
             throw new ReservationException("해당 스터디 공간이 존재하지 않습니다.");
-        reservations.add(new Reservation(studyAreaBranchId, studyAreaId, customerCnt, startAt, hours));
+        if(customerCnt > studyAreaBranch[studyAreaBranchId].getStudyAreas()[studyAreaId].getCapacity())
+            throw new ReservationException("해당 스터디 공간의 가용인원을 초과하였습니다");
+        reservations.add(new Reservation(currentCustomerId,studyAreaBranchId, studyAreaId, customerCnt, startAt, hours));
 
     }
 
@@ -154,6 +191,37 @@ public class BranchManager {
                 myReservations.add(rsv.toString());
         }
         return myReservations;
+    }
+
+    private Reservation getReservation(int hashCode){
+        for(Reservation rsv: reservations){
+            if(rsv.hashCode() == hashCode){
+                return rsv;
+
+            }
+        }
+        return null;
+    }
+
+    public void modifyMyReservation(int hashCode, int customerCnt) throws ReservationException{
+        Reservation rsv =  getReservation(hashCode);
+        if(rsv == null)
+            throw new ReservationException("코드에 해당하는 예약이 존재하지 않습니다");
+        if(!rsv.getCustomerId().equals(currentCustomerId))
+            throw new ReservationException("현재 로그인한 회원의 예약이 아닙니다.");
+        if(customerCnt > studyAreaBranch[rsv.getStudyAreaBranchId()].getStudyAreas()[rsv.getStudyAreaId()].getCapacity())
+            throw new ReservationException("해당 스터디 공간의 가용인원을 초과하였습니다");
+
+        rsv.setCustomerCnt(customerCnt);
+    }
+
+    public void deleteMyReservation(int hashCode) throws ReservationException {
+        Reservation rsv =  getReservation(hashCode);
+        if(rsv == null)
+            throw new ReservationException("코드에 해당하는 예약이 존재하지 않습니다");
+        if(!rsv.getCustomerId().equals(currentCustomerId))
+            throw new ReservationException("현재 로그인한 회원의 예약이 아닙니다.");
+        reservations.remove(rsv);
     }
 }
 
