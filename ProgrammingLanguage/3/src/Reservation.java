@@ -59,6 +59,6 @@ public class Reservation {
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerId, studyAreaBranchId, studyAreaId, startAt.toString()) % 1000000;
+        return Math.abs(Objects.hash(customerId, studyAreaBranchId, studyAreaId, startAt.toString())) % 1000000;
     }
 }

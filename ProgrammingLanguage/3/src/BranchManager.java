@@ -1,6 +1,8 @@
 import java.io.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
@@ -19,6 +21,7 @@ public class BranchManager {
         this.studyAreaBranch = new StudyAreaBranch[7];
         this.reservations = new ArrayList<Reservation>();
         loadBranches();
+        loadReservations();
     }
 
     public StudyAreaBranch[] getStudyAreaBranch() {
@@ -101,6 +104,7 @@ public class BranchManager {
                         rsv.getCustomerCnt() + " "+
                         rsv.getStartAt().toString() + " "+
                         rsv.getHours());
+                bw.newLine();
             }
             bw.close();
         }catch (Exception e){
@@ -108,26 +112,33 @@ public class BranchManager {
         }
     }
 
-//    public void loadReservations(){
-//        String filePath = "./reservations.txt";
-//        File file = new File(filePath);
-//        try {
-//            if(!file.exists())
-//                file.createNewFile();
-//            BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-//            for(Reservation rsv: reservations){
-//                bw.write(rsv.getCustomerId() +" "+
-//                        rsv.getStudyAreaBranchId() + " "+
-//                        rsv.getStudyAreaId() + " "+
-//                        rsv.getCustomerCnt() + " "+
-//                        rsv.getStartAt().toString() + " "+
-//                        rsv.getHours());
-//            }
-//            bw.close();
-//        }catch (Exception e){
-//            System.out.println(e);
-//        }
-//    }
+    public void loadReservations(){
+        String filePath = "./reservations.txt";
+        File file = new File(filePath);
+        try {
+            if(!file.exists())
+                file.createNewFile();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String line;
+            while(true){
+                line = br.readLine();
+                if(line == null) break;
+                StringTokenizer st = new StringTokenizer(line);
+                Reservation rsv = new Reservation(
+                    st.nextToken(),
+                    Integer.parseInt(st.nextToken()),
+                    Integer.parseInt(st.nextToken()),
+                    Integer.parseInt(st.nextToken()),
+                    LocalDateTime.parse(st.nextToken()),
+                    Integer.parseInt(st.nextToken())
+                );
+                reservations.add(rsv);
+            }
+            br.close();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
     private void checkBranchInRange(int id) throws StudyException {
         if (id < 0 || id > 6) {
