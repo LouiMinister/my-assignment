@@ -18,6 +18,7 @@ public class Kiosk {
     }
     public void start(){
         while(true){
+            System.out.println("이 프로그램은 존재하지 않는 명령어를 입력하면 처음 화면으로 돌아옵니다( ex: q)");
             System.out.println("모드 선택: 1.관리자모드 2.사용자모드 3.프로그램종료");
             try {
                 int action = scanner.nextInt();
@@ -170,7 +171,7 @@ public class Kiosk {
 
     private void lookUpMyReservations() throws  InputMismatchException{
         ArrayList<String> myReservations = branchManager.getMyReservationsStr();
-        System.out.println("============지점목록============");
+        System.out.println("============예약목록============");
         if(myReservations.size() == 0){
             System.out.println("예약 내역이 존재하지 않습니다");
             return;
@@ -230,11 +231,6 @@ public class Kiosk {
             }
         }
     }
-
-    public static void main(String[] args){
-        new Kiosk().start();
-    }
-
 }
 
 class EndException extends Exception {}

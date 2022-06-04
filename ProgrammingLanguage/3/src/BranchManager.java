@@ -117,7 +117,7 @@ public class BranchManager {
         File file = new File(filePath);
         try {
             if(!file.exists())
-                file.createNewFile();
+                return;
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line;
             while(true){
