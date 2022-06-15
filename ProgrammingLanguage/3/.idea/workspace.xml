@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="62b36031-b00d-488d-b503-9604dcc98208" name="변경" comment="PL assignment">
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q10.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q11.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q12.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q13.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q14.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q15.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q8.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Q9.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/QE1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/Final/Testt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/FinalExamTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/src/FinalTerm17.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-C/main.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-C/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/branches.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/BranchManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/CommandMismatchException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/CustomException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/CustomerException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/EndException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/Kiosk.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/Reservation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/ReservationException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/StudyArea.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/StudyAreaBranch.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/out/production/3/StudyException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/reservations.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/src/BranchManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/src/Kiosk.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/src/Reservation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/src/StudyArea.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/3-oop/src/StudyAreaBranch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ObjectOrientedProgramming/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../ObjectOrientedProgramming/out/production/ObjectOrientedProgramming/DictionaryApp.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../ObjectOrientedProgramming/out/production/ObjectOrientedProgramming/DictionaryApp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/BranchManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/CommandMismatchException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/CustomException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/CustomerException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/EndException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/Kiosk.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/Reservation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/ReservationException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/StudyArea.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/StudyAreaBranch.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3/StudyException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BranchManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Kiosk.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Reservation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudyArea.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/StudyAreaBranch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SoftwareEngineering/out/2/class/classDiagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SoftwareEngineering/out/2/sequence/sequenceDiagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SoftwareEngineering/out/2/state/stateDiagram.png" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="29hIOWAaKnhd0gkOVKXsQQAILZG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RunManager" selected="애플리케이션.Main">
+    <configuration name="Kiosk" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Kiosk" />
+      <module name="3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudyAreaBranch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="StudyAreaBranch" />
+      <module name="3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="애플리케이션.Main" />
+        <item itemvalue="애플리케이션.Kiosk" />
+        <item itemvalue="애플리케이션.StudyAreaBranch" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="62b36031-b00d-488d-b503-9604dcc98208" name="변경" comment="" />
+      <created>1653558861513</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1653558861513</updated>
+      <workItem from="1653558862612" duration="12050000" />
+      <workItem from="1653670314775" duration="15891000" />
+      <workItem from="1653912753135" duration="2530000" />
+      <workItem from="1653972386610" duration="7183000" />
+      <workItem from="1654025361262" duration="20357000" />
+      <workItem from="1654267081684" duration="615000" />
+      <workItem from="1654316753601" duration="7865000" />
+      <workItem from="1654594005843" duration="23000" />
+      <workItem from="1655273425668" duration="1366000" />
+    </task>
+    <task id="LOCAL-00001" summary="PL &amp; OOP assignment">
+      <created>1654056527439</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1654056527439</updated>
+    </task>
+    <task id="LOCAL-00002" summary="PL assignment">
+      <created>1654075425467</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654075425468</updated>
+    </task>
+    <task id="LOCAL-00003" summary="PL assignment">
+      <created>1654081024651</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1654081024651</updated>
+    </task>
+    <task id="LOCAL-00004" summary="PL assignment">
+      <created>1654083308766</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1654083308766</updated>
+    </task>
+    <task id="LOCAL-00005" summary="PL assignment">
+      <created>1654343566878</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654343566878</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="PL &amp; OOP assignment" />
+    <MESSAGE value="PL assignment" />
+    <option name="LAST_COMMIT_MESSAGE" value="PL assignment" />
+  </component>
+</project>
